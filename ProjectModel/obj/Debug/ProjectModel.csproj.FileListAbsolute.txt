@@ -1,0 +1,13 @@
+C:\Users\III\Desktop\Project\ProjectModel\bin\Debug\ProjectModel.dll.config
+C:\Users\III\Desktop\Project\ProjectModel\bin\Debug\ProjectModel.dll
+C:\Users\III\Desktop\Project\ProjectModel\bin\Debug\ProjectModel.pdb
+C:\Users\III\Desktop\Project\ProjectModel\bin\Debug\EntityFramework.dll
+C:\Users\III\Desktop\Project\ProjectModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\III\Desktop\Project\ProjectModel\bin\Debug\EntityFramework.xml
+C:\Users\III\Desktop\Project\ProjectModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\III\Desktop\Project\ProjectModel\bin\Debug\zh-Hant\EntityFramework.resources.dll
+C:\Users\III\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.csproj.CoreCompileInputs.cache
+C:\Users\III\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.csproj.CopyComplete
+C:\Users\III\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.dll
+C:\Users\III\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.pdb
+C:\Users\III\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.csprojAssemblyReference.cache
