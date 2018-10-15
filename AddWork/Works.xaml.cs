@@ -1,6 +1,8 @@
-﻿using ProjectModel;
+﻿using AddWork.Model;
+using ProjectModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,37 +22,58 @@ namespace AddWork
     /// </summary>
     public partial class Works : Window
     {
-        public string projectIDTextBox { get; internal set; }
+
         ProjectManagementEntities ProjectDBContext = new ProjectManagementEntities();
         public Works()
         {
-            InitializeComponent();
-            LoadProjectTreeView();
-        }
-        private void LoadProjectTreeView()
-        {
-            //ProjectTreeView.Items.Clear();
-            //var q = ProjectDBContext.Works.Where(n=>n.ProjectID==.GroupBy(n => n.Project.ProjectName);
-            //foreach (var dept in q)
-            //{
-            //    TreeViewItem x = new TreeViewItem();
-            //    x.Header = dept.Key;
-            //    ProjectTreeView.Items.Add(x);
-            //    foreach (var projects in dept)
-            //    {
-            //        TreeViewItem y = new TreeViewItem();
-            //        y.Header = projects.ProjectName;
-            //        y.Selected += Y_Selected;
-            //        x.Items.Add(y);
-            //    }
-            //}
-
-        }
-        private void Y_Selected(object sender, RoutedEventArgs e)
-        {
-           
+            InitializeComponent();            
         }
 
+        public TextBox projectIDTextBox { get; internal set; }
+        public TextBox projectNameTextBox { get; internal set; }
+
+        public void LoadProjectTreeView()
+        {
+            ProjectTreeView.Model = new WorksTreeModel(projectIDTextBox.Text, projectNameTextBox.Text);            
+        }
+        public void LoadProjectListBox()
+        {
+            ListBox works = (ListBox)this.Resources["subWorks"];            
+            List<WorksListBox> worksListBoxes = new List<WorksListBox>();
+            var q = ProjectDBContext.Works.Where(n => n.ProjectID == projectIDTextBox.Text);
+            foreach (var x in q.Where(n=>n.ParentWorkID==null))
+            {
+                WorksListBox listBox = new WorksListBox()
+                {
+                    WorkName = x.WorkName,
+                    WorkID = x.WorkID,
+                };
+                worksListBoxes.Add(listBox);
+            }
+            works.ItemsSource = worksListBoxes;
+            stackPanel1.Children.Add(works);
+        }
+
+        private void ListBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            //ListBox works = (ListBox)this.Resources["subWorks"];
+            ListBox works = new ListBox();
+            ListBox selectitem = sender as ListBox;
+            WorksListBox parentworks = selectitem.SelectedItem as WorksListBox;
+            List<WorksListBox> worksListBoxes = new List<WorksListBox>();
+            var q = ProjectDBContext.Works.Where(n => n.ProjectID == projectIDTextBox.Text);
+            foreach (var x in q.Where(n => n.ParentWorkID == parentworks.WorkID))
+            {
+                WorksListBox listBox = new WorksListBox()
+                {
+                    WorkName = x.WorkName,
+                    WorkID = x.WorkID,
+                };
+                worksListBoxes.Add(listBox);
+            }
+            works.ItemsSource = worksListBoxes;
+            stackPanel1.Children.Add(works);
+        }
     }
     
 }

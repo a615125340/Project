@@ -11,3 +11,16 @@ C:\Users\III\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.csproj.CopyComp
 C:\Users\III\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.dll
 C:\Users\III\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.pdb
 C:\Users\III\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.csprojAssemblyReference.cache
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\bin\Debug\ProjectModel.dll.config
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\bin\Debug\ProjectModel.dll
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\bin\Debug\ProjectModel.pdb
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\bin\Debug\EntityFramework.dll
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\bin\Debug\EntityFramework.xml
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\bin\Debug\zh-Hant\EntityFramework.resources.dll
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.csprojAssemblyReference.cache
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.csproj.CoreCompileInputs.cache
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.csproj.CopyComplete
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.dll
+C:\Users\Tien_Shih\Desktop\Project\ProjectModel\obj\Debug\ProjectModel.pdb

@@ -3,9 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AddWork"
+        xmlns:Tree="clr-namespace:Aga.Controls.Tree;assembly=Aga.Controls" 
+        xmlns:local="clr-namespace:AddWork"        
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
+    <Window.Resources>
+        <ListBox  x:Key="subWorks" SelectionChanged="ListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <HierarchicalDataTemplate DataType="x:type Project:WorksListBox" ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding WorkName}"/>
+                </HierarchicalDataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Window.Resources>
     <Grid ShowGridLines="True" >
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
@@ -71,9 +81,19 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-
+                <StackPanel Name="stackPanel1" Orientation="Horizontal"/>
             </Grid>
-            <TreeView x:Name="ProjectTreeView"/>
+            <Tree:TreeList Name="ProjectTreeView" DockPanel.Dock="Left" >
+                <Tree:TreeList.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Tree:RowExpander/>
+                            <TextBlock Text="{Binding WorkName}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </Tree:TreeList.ItemTemplate>
+            </Tree:TreeList>
+
         </Grid>
     </Grid>
 </Window>

@@ -76,7 +76,8 @@ namespace AddWork
                 inChargeDeptPMIDTextBox.Text = project.InChargeDeptPMID.ToString();
                 isGeneralManagerConcernedCheckBox.IsChecked = project.IsGeneralManagerConcerned;
             }
-            treelist1.Model = new TreeModel();
+            
+            treelist1.Model = new ProjectTreeModel(projectIDTextBox.Text, projectNameTextBox.Text);
         }
 
         private void AddProject()
@@ -192,7 +193,7 @@ namespace AddWork
             LoadDeptTreeView();
             ColumnClear();
         }
-
+        
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (projectIDTextBox.Text == "" || projectIDTextBox.Text == null)
@@ -201,9 +202,9 @@ namespace AddWork
             else
             {
                 SaveMenuItem_Click(sender, e);
-                Works works = new Works();
-
-                works.projectIDTextBox = projectIDTextBox.Text;
+                Works works = new Works { projectIDTextBox = projectIDTextBox, projectNameTextBox = projectNameTextBox};
+                works.LoadProjectTreeView();
+                works.LoadProjectListBox();
 
                 works.Show();
             }

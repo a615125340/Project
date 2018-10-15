@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AddWork"
-        xmlns:Tree="clr-namespace:Aga.Controls.Tree;assembly=Aga.Controls" x:Class="AddWork.MainWindow"
+        xmlns:Tree="clr-namespace:Aga.Controls.Tree;assembly=Aga.Controls" x:Class="AddWork.MainWindow"    
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
@@ -19,7 +19,7 @@
             <RowDefinition Height="32"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu HorizontalAlignment="Right" Height="32" VerticalAlignment="Top" Width="792" Grid.Row="0">
+        <Menu Grid.Row="0">
             <Button Height="30" Width="150" Margin="0" BorderBrush="{x:Null}" Background="{x:Null}" Click="AddProjectButton_Click">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -239,35 +239,72 @@
                 <Tree:TreeList x:Name="treelist1" Grid.Row="1">
                     <Tree:TreeList.View>
                         <GridView>
-                            <GridViewColumn Width="400" Header="Name">
+                            <GridViewColumn Width="400" Header="工作名稱">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
                                             <Tree:RowExpander/>
-                                            <TextBox Text="{Binding Step}"  BorderBrush="{x:Null}" Background="{x:Null}"/>
-                                            <TextBox Text="{Binding Name}"  BorderBrush="{x:Null}" Background="{x:Null}"/>
+                                            <TextBlock Text="{Binding Step}"   Background="{x:Null}"/>
+                                            <TextBox Text="{Binding WorkName}"  BorderBrush="{x:Null}" Background="{x:Null}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Type" Width="50">
+                            <GridViewColumn Header="負責人" Width="50">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBox Text="{Binding Kind}"  BorderBrush="{x:Null}" Background="{x:Null}"/>
+                                            <TextBlock Text="{Binding EmployeeID}" Background="{x:Null}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Data" Width="100">
+                            <GridViewColumn Header="工作狀態" Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBox Text="{Binding Data}"  BorderBrush="{x:Null}" Background="{x:Null}"/>
+                                            <TextBlock Text="{Binding WorkStatusID}"  Background="{x:Null}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
+                            <GridViewColumn Header="預計開始時間" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding WorkEstStartDate}"  Background="{x:Null}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="預計結束時間" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding WorkEstEndDate}"  Background="{x:Null}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="實際開始時間" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding WorkStartDate}"  Background="{x:Null}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="實際結束時間" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding WorkEndDate}"  Background="{x:Null}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            
                         </GridView>
                     </Tree:TreeList.View>
                 </Tree:TreeList>

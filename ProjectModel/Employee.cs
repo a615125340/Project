@@ -33,6 +33,7 @@ namespace ProjectModel
         public Nullable<int> ManagerID { get; set; }
         public Nullable<int> DepartmentID { get; set; }
         public Nullable<int> TitleID { get; set; }
+        public byte[] Picture { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

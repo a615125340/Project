@@ -67,7 +67,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\TreeModel.cs" />
+    <Compile Include="Model\WorksListBox.cs" />
+    <Compile Include="Model\ProjectTreeModel.cs" />
+    <Compile Include="Model\WorksTreeModel.cs" />
     <Compile Include="Works.xaml.cs">
       <DependentUpon>Works.xaml</DependentUpon>
     </Compile>

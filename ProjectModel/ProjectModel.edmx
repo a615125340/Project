@@ -22,6 +22,7 @@
           <Property Name="ManagerID" Type="int" />
           <Property Name="DepartmentID" Type="int" />
           <Property Name="TitleID" Type="int" />
+          <Property Name="Picture" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="JobTitle">
           <Key>
@@ -30,12 +31,6 @@
           <Property Name="TitleID" Type="int" Nullable="false" />
           <Property Name="TitleName" Type="nvarchar(max)" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'ProjectManagement.dbo.JobTitle$' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="JobTitle$">
-          <Property Name="TitleID" Type="float" />
-          <Property Name="TitleName" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
         <EntityType Name="Meeting">
           <Key>
             <PropertyRef Name="MeetingID" />
@@ -876,6 +871,7 @@
           <Property Name="ManagerID" Type="Int32" />
           <Property Name="DepartmentID" Type="Int32" />
           <Property Name="TitleID" Type="Int32" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Department" Relationship="ProjectManagementModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <NavigationProperty Name="Employee1" Relationship="ProjectManagementModel.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
           <NavigationProperty Name="Employee2" Relationship="ProjectManagementModel.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
@@ -1455,7 +1451,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1473,6 +1469,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="ProjectManagementModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="TitleID" ColumnName="TitleID" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />

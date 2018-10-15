@@ -165,6 +165,7 @@
     <Property Name="ManagerID" Type="Int32" />
     <Property Name="DepartmentID" Type="Int32" />
     <Property Name="TitleID" Type="Int32" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="Department" Relationship="ProjectManagementModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
     <NavigationProperty Name="Employee1" Relationship="ProjectManagementModel.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
     <NavigationProperty Name="Employee2" Relationship="ProjectManagementModel.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
