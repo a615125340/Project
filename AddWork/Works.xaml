@@ -7,21 +7,13 @@
         xmlns:local="clr-namespace:AddWork"        
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
-    <Window.Resources>
-        <ListBox  x:Key="subWorks" SelectionChanged="ListBox_SelectionChanged">
-            <ListBox.ItemTemplate>
-                <HierarchicalDataTemplate DataType="x:type Project:WorksListBox" ItemsSource="{Binding Children}">
-                    <TextBlock Text="{Binding WorkName}"/>
-                </HierarchicalDataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </Window.Resources>
+   
     <Grid ShowGridLines="True" >
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu HorizontalAlignment="Right" Height="32" VerticalAlignment="Top" Width="792" Grid.Row="0">
+        <Menu Grid.Row="0">
             <Button Height="30" Width="150" Margin="0" BorderBrush="{x:Null}" Background="{x:Null}" >
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -78,17 +70,16 @@
             </Grid.RowDefinitions>
             <Grid  ShowGridLines="True" Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackPanel Name="stackPanel1" Orientation="Horizontal"/>
+                <DataGrid Name="dataGrid1"/>
             </Grid>
-            <Tree:TreeList Name="ProjectTreeView" DockPanel.Dock="Left" >
+            <Tree:TreeList Name="ProjectTreeView" DockPanel.Dock="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <Tree:TreeList.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel  Orientation="Horizontal">
                             <Tree:RowExpander/>
-                            <TextBlock Text="{Binding WorkName}"></TextBlock>
+                            <TextBlock  Width="400" Text="{Binding WorkName}" Tag="{Binding WorkID}" MouseLeftButtonDown="ProjectTreeView_MouseLeftButtonDown" ></TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </Tree:TreeList.ItemTemplate>

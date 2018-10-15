@@ -53,8 +53,8 @@
     <Key>
       <PropertyRef Name="PreTaskID" />
     </Key>
-    <Property Name="TaskID" Type="nchar" MaxLength="10" />
-    <Property Name="PreTaskID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TaskID" Type="int" />
+    <Property Name="PreTaskID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Project">
     <Key>
@@ -70,8 +70,8 @@
     <Property Name="EndDate" Type="date" />
     <Property Name="InChargeDeptID" Type="int" />
     <Property Name="InChargeDeptPMID" Type="int" />
-    <Property Name="ProjectStatusID" Type="nchar" MaxLength="10" />
-    <Property Name="ProjectCategoryID" Type="nchar" MaxLength="10" />
+    <Property Name="ProjectStatusID" Type="int" />
+    <Property Name="ProjectCategoryID" Type="int" />
     <Property Name="ProjectSupervisorID" Type="int" />
     <Property Name="IsGeneralManagerConcerned" Type="bit" />
   </EntityType>
@@ -79,7 +79,7 @@
     <Key>
       <PropertyRef Name="ProjectCategoryID" />
     </Key>
-    <Property Name="ProjectCategoryID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ProjectCategoryID" Type="int" Nullable="false" />
     <Property Name="ProjectCategoryName" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="ProjectDiscuss">
@@ -104,7 +104,7 @@
     <Key>
       <PropertyRef Name="StatusID" />
     </Key>
-    <Property Name="StatusID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
     <Property Name="StatusCategoryID" Type="nchar" MaxLength="10" />
     <Property Name="StatusName" Type="nvarchar(max)" />
   </EntityType>
@@ -112,10 +112,10 @@
     <Key>
       <PropertyRef Name="TaskDetailID" />
     </Key>
-    <Property Name="TaskID" Type="nchar" MaxLength="10" />
+    <Property Name="TaskID" Type="int" />
     <Property Name="TaskDetailID" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="TaskDetailName" Type="nvarchar(max)" />
-    <Property Name="TaskDetailStatusID" Type="nchar" MaxLength="10" />
+    <Property Name="TaskDetailStatusID" Type="int" />
     <Property Name="StartDate" Type="date" />
     <Property Name="EndDate" Type="date" />
     <Property Name="EmployeeID" Type="int" />
@@ -125,7 +125,7 @@
     <Key>
       <PropertyRef Name="ModifiedID" />
     </Key>
-    <Property Name="TaskID" Type="nchar" MaxLength="10" />
+    <Property Name="TaskID" Type="int" />
     <Property Name="ModifiedID" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Date" Type="date" />
@@ -134,8 +134,8 @@
     <Key>
       <PropertyRef Name="TaskID" />
     </Key>
-    <Property Name="WorkID" Type="nchar" MaxLength="10" />
-    <Property Name="TaskID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="WorkID" Type="int" />
+    <Property Name="TaskID" Type="int" Nullable="false" />
     <Property Name="TaskName" Type="nvarchar(max)" />
     <Property Name="EstStartDate" Type="date" />
     <Property Name="EstEndDate" Type="date" />
@@ -143,7 +143,7 @@
     <Property Name="StartDate" Type="date" />
     <Property Name="EndDate" Type="date" />
     <Property Name="WorkTime" Type="nchar" MaxLength="10" />
-    <Property Name="TaskStatusID" Type="nchar" MaxLength="10" />
+    <Property Name="TaskStatusID" Type="int" />
     <Property Name="EmployeeID" Type="int" />
     <Property Name="Tag" Type="nvarchar(max)" />
     <Property Name="Description" Type="nvarchar(max)" />
@@ -154,21 +154,21 @@
     </Key>
     <Property Name="ProjectID" Type="nchar" MaxLength="10" />
     <Property Name="EmployeeID" Type="int" />
-    <Property Name="ParentWorkID" Type="nchar" MaxLength="10" />
-    <Property Name="WorkID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ParentWorkID" Type="int" />
+    <Property Name="WorkID" Type="int" Nullable="false" />
     <Property Name="WorkName" Type="nvarchar(max)" />
     <Property Name="WorkEstStartDate" Type="date" />
     <Property Name="WorkEstEndDate" Type="date" />
     <Property Name="WorkStartDate" Type="date" />
     <Property Name="WorkEndDate" Type="date" />
     <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="WorkStatusID" Type="nchar" MaxLength="10" />
+    <Property Name="WorkStatusID" Type="int" />
   </EntityType>
   <EntityType Name="WorksModified">
     <Key>
       <PropertyRef Name="ModifiedID" />
     </Key>
-    <Property Name="WorkID" Type="nchar" MaxLength="10" />
+    <Property Name="WorkID" Type="int" />
     <Property Name="ModifiedID" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Date" Type="date" />

@@ -226,8 +226,8 @@
     <Property Name="EndDate" Type="DateTime" Precision="0" />
     <Property Name="InChargeDeptID" Type="Int32" />
     <Property Name="InChargeDeptPMID" Type="Int32" />
-    <Property Name="ProjectStatusID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="ProjectCategoryID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ProjectStatusID" Type="Int32" />
+    <Property Name="ProjectCategoryID" Type="Int32" />
     <Property Name="ProjectSupervisorID" Type="Int32" />
     <Property Name="IsGeneralManagerConcerned" Type="Boolean" />
     <NavigationProperty Name="Department" Relationship="ProjectManagementModel.FK_Project_Department" FromRole="Project" ToRole="Department" />
@@ -245,7 +245,7 @@
     <Key>
       <PropertyRef Name="ProjectCategoryID" />
     </Key>
-    <Property Name="ProjectCategoryID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ProjectCategoryID" Type="Int32" Nullable="false" />
     <Property Name="ProjectCategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Projects" Relationship="ProjectManagementModel.FK_Project_ProjectCategory" FromRole="ProjectCategory" ToRole="Project" />
   </EntityType>
@@ -263,7 +263,7 @@
     <Key>
       <PropertyRef Name="StatusID" />
     </Key>
-    <Property Name="StatusID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
     <Property Name="StatusCategoryID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="StatusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Projects" Relationship="ProjectManagementModel.FK_Project_Status" FromRole="Status" ToRole="Project" />
@@ -275,10 +275,10 @@
     <Key>
       <PropertyRef Name="TaskDetailID" />
     </Key>
-    <Property Name="TaskID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TaskID" Type="Int32" />
     <Property Name="TaskDetailID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="TaskDetailName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="TaskDetailStatusID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TaskDetailStatusID" Type="Int32" />
     <Property Name="StartDate" Type="DateTime" Precision="0" />
     <Property Name="EndDate" Type="DateTime" Precision="0" />
     <Property Name="EmployeeID" Type="Int32" />
@@ -291,7 +291,7 @@
     <Key>
       <PropertyRef Name="ModifiedID" />
     </Key>
-    <Property Name="TaskID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TaskID" Type="Int32" />
     <Property Name="ModifiedID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Date" Type="DateTime" Precision="0" />
@@ -301,8 +301,8 @@
     <Key>
       <PropertyRef Name="TaskID" />
     </Key>
-    <Property Name="WorkID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="TaskID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="WorkID" Type="Int32" />
+    <Property Name="TaskID" Type="Int32" Nullable="false" />
     <Property Name="TaskName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="EstStartDate" Type="DateTime" Precision="0" />
     <Property Name="EstEndDate" Type="DateTime" Precision="0" />
@@ -310,7 +310,7 @@
     <Property Name="StartDate" Type="DateTime" Precision="0" />
     <Property Name="EndDate" Type="DateTime" Precision="0" />
     <Property Name="WorkTime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="TaskStatusID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TaskStatusID" Type="Int32" />
     <Property Name="EmployeeID" Type="Int32" />
     <Property Name="Tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -328,15 +328,15 @@
     </Key>
     <Property Name="ProjectID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="EmployeeID" Type="Int32" />
-    <Property Name="ParentWorkID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="WorkID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ParentWorkID" Type="Int32" />
+    <Property Name="WorkID" Type="Int32" Nullable="false" />
     <Property Name="WorkName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="WorkEstStartDate" Type="DateTime" Precision="0" />
     <Property Name="WorkEstEndDate" Type="DateTime" Precision="0" />
     <Property Name="WorkStartDate" Type="DateTime" Precision="0" />
     <Property Name="WorkEndDate" Type="DateTime" Precision="0" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="WorkStatusID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="WorkStatusID" Type="Int32" />
     <NavigationProperty Name="Employee" Relationship="ProjectManagementModel.FK_ProjectWork_Employee" FromRole="Work" ToRole="Employee" />
     <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_ProjectWork_Project" FromRole="Work" ToRole="Project" />
     <NavigationProperty Name="Status" Relationship="ProjectManagementModel.FK_ProjectWork_Status" FromRole="Work" ToRole="Status" />
@@ -349,7 +349,7 @@
     <Key>
       <PropertyRef Name="ModifiedID" />
     </Key>
-    <Property Name="WorkID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="WorkID" Type="Int32" />
     <Property Name="ModifiedID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Date" Type="DateTime" Precision="0" />
@@ -359,8 +359,8 @@
     <Key>
       <PropertyRef Name="PreTaskID" />
     </Key>
-    <Property Name="TaskID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="PreTaskID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TaskID" Type="Int32" />
+    <Property Name="PreTaskID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Task" Relationship="ProjectManagementModel.FK_PrepActivity_ActivityList" FromRole="PreTask" ToRole="Task" />
     <NavigationProperty Name="Task1" Relationship="ProjectManagementModel.FK_PrepActivity_ActivityList1" FromRole="PreTask" ToRole="Task" />
   </EntityType>

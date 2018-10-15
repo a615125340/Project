@@ -1,4 +1,5 @@
 ﻿using AddWork.Model;
+using Aga.Controls.Tree;
 using ProjectModel;
 using System;
 using System.Collections.Generic;
@@ -29,50 +30,22 @@ namespace AddWork
             InitializeComponent();            
         }
 
-        public TextBox projectIDTextBox { get; internal set; }
+        public TextBlock projectIDTextBox { get; internal set; }
         public TextBox projectNameTextBox { get; internal set; }
 
         public void LoadProjectTreeView()
         {
             ProjectTreeView.Model = new WorksTreeModel(projectIDTextBox.Text, projectNameTextBox.Text);            
         }
-        public void LoadProjectListBox()
-        {
-            ListBox works = (ListBox)this.Resources["subWorks"];            
-            List<WorksListBox> worksListBoxes = new List<WorksListBox>();
-            var q = ProjectDBContext.Works.Where(n => n.ProjectID == projectIDTextBox.Text);
-            foreach (var x in q.Where(n=>n.ParentWorkID==null))
-            {
-                WorksListBox listBox = new WorksListBox()
-                {
-                    WorkName = x.WorkName,
-                    WorkID = x.WorkID,
-                };
-                worksListBoxes.Add(listBox);
-            }
-            works.ItemsSource = worksListBoxes;
-            stackPanel1.Children.Add(works);
-        }
 
-        private void ListBox_SelectionChanged(object sender, RoutedEventArgs e)
+        private void ProjectTreeView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //ListBox works = (ListBox)this.Resources["subWorks"];
-            ListBox works = new ListBox();
-            ListBox selectitem = sender as ListBox;
-            WorksListBox parentworks = selectitem.SelectedItem as WorksListBox;
-            List<WorksListBox> worksListBoxes = new List<WorksListBox>();
-            var q = ProjectDBContext.Works.Where(n => n.ProjectID == projectIDTextBox.Text);
-            foreach (var x in q.Where(n => n.ParentWorkID == parentworks.WorkID))
-            {
-                WorksListBox listBox = new WorksListBox()
-                {
-                    WorkName = x.WorkName,
-                    WorkID = x.WorkID,
-                };
-                worksListBoxes.Add(listBox);
-            }
-            works.ItemsSource = worksListBoxes;
-            stackPanel1.Children.Add(works);
+            TextBlock textBlock = sender as TextBlock;           
+            var q = ProjectDBContext.Tasks.Where(n => n.WorkID == (int)textBlock.Tag).
+                Select(n=>
+                new { 工作名稱=n.Work.WorkName,任務代號=n.TaskID,任務名稱=n.TaskName,預計開始時間=n.EstStartDate,預計結束時間=n.EstEndDate,開始時間=n.StartDate,結束時間=n.EndDate,}                
+                );
+            dataGrid1.ItemsSource = q.ToList();
         }
     }
     

@@ -97,12 +97,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\ProjectColumn.cs" />
-    <Compile Include="ProjectManagementDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectManagementDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="UserControl\LabelDatePicker.xaml.cs">
       <DependentUpon>LabelDatePicker.xaml</DependentUpon>
     </Compile>
@@ -139,17 +133,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ProjectManagementDataSet.xsc">
-      <DependentUpon>ProjectManagementDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ProjectManagementDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProjectManagementDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ProjectManagementDataSet.xss">
-      <DependentUpon>ProjectManagementDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -176,6 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\HomePage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\RemoveWorks.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,7 +10,7 @@ namespace AddWork.Model
     {
         public string ProjectID { get; set; }
         public string WorkName { get; set; }
-        public string WorkID { get; set; }
+        public int WorkID { get; set; }
         public int ParentWorkID { get; set; }
         public List<WorksListBox> Children { get; set; }
         public WorksListBox()

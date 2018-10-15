@@ -29,7 +29,7 @@ namespace AddWork.Model
 
         public bool HasChildren(object parent)//當return true表示還有子項目，會在往下增加階層
         {
-            return true;
+            return (parent as WorksModel).ChildCount > 0;
         }
 
         IEnumerable ITreeModel.GetChildren(object parent)
@@ -41,7 +41,12 @@ namespace AddWork.Model
                 var q = ProjectDBContext.Works.Where(n => n.ProjectID == projectIDTextBox && n.ParentWorkID == null);
                 foreach (var x in q)
                 {
-                    WorksModel worksModel = new WorksModel { WorkName = x.WorkName , WorkID = x.WorkID };
+                    WorksModel worksModel = new WorksModel
+                    {
+                        ChildCount = ProjectDBContext.Works.Where(n => n.ParentWorkID == x.WorkID).Count(),
+                        WorkName = x.WorkName ,
+                        WorkID = x.WorkID
+                    };
                     yield return worksModel;
                 }
                 
@@ -54,7 +59,12 @@ namespace AddWork.Model
 
                 foreach (var x in q)
                 {
-                    WorksModel worksModel = new WorksModel { WorkName = x.WorkName, WorkID = x.WorkID };
+                    WorksModel worksModel = new WorksModel
+                    {
+                        ChildCount = ProjectDBContext.Works.Where(n => n.ParentWorkID == x.WorkID).Count(),
+                        WorkName = x.WorkName,
+                        WorkID = x.WorkID
+                    };
                     yield return worksModel;
                 }
 
@@ -63,7 +73,8 @@ namespace AddWork.Model
     }
     public class WorksModel
     {
+        public int ChildCount { get; set; }
         public string WorkName { get; set; }
-        public string WorkID { get; internal set; }
+        public int WorkID { get; internal set; }
     }
 }
