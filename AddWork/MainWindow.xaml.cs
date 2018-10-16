@@ -34,12 +34,14 @@ namespace AddWork
             InitializeComponent();
             LoadDeptTreeView();
             LoadComboBox();
+
         }
 
 
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            ColumnClear();
         }
         private void LoadDeptTreeView()
         {
@@ -86,7 +88,7 @@ namespace AddWork
             }
             foreach (var x in q.Employees)
             {
-                ComboBoxItem item = new ComboBoxItem() { Content = x.EmployeeName, Tag = x.EmployeeID};
+                ComboBoxItem item = new ComboBoxItem() { Content = x.EmployeeName, Tag = x.EmployeeID };
                 requiredDeptPMIDComboBox.Items.Add(item);
             }
             foreach (var x in q.Employees)
@@ -98,6 +100,18 @@ namespace AddWork
             {
                 ComboBoxItem item = new ComboBoxItem() { Content = x.EmployeeName, Tag = x.EmployeeID };
                 projectSupervisorIDComboBox.Items.Add(item);
+            }
+            //==============================================================================================
+            foreach (var x in q.Employees)
+            {
+                ComboBoxItem item = new ComboBoxItem() { Content = x.EmployeeName, Tag = x.EmployeeID };
+                InputEmployeeID.Items.Add(item);
+            }
+
+            foreach (var x in q.Status.Where(n => n.StatusCategoryID == "Works"))
+            {
+                ComboBoxItem item = new ComboBoxItem() { Content = x.StatusName, Tag = x.StatusID };
+                InputWorkStatusID.Items.Add(item);
             }
 
         }
@@ -127,6 +141,7 @@ namespace AddWork
         }
         private void AddProject()
         {
+
             ProjectModel.Project project = new ProjectModel.Project
             {
                 ProjectID = projectIDTextBox.Text,
@@ -167,17 +182,71 @@ namespace AddWork
         }
         private void DeleteProject()
         {
-            var q = ProjectDBContext.Projects.Where(n => n.ProjectID == projectIDTextBox.Text).First();
-
-            if (q != null)
+            var q = ProjectDBContext.Projects.Where(n => n.ProjectID == projectIDTextBox.Text);
+            if (q.Count() > 0)
             {
-                ProjectDBContext.Projects.Remove(q);
-            }
-            ProjectDBContext.SaveChanges();
+                if (q != null)
+                {
+                    var works = ProjectDBContext.Works.Where(n => n.ProjectID == projectIDTextBox.Text);
+                    foreach (var x in works)
+                    {
+                        ProjectDBContext.Works.Remove(x);
+                    }
 
+                    ProjectDBContext.Projects.Remove(q.First());
+                    ProjectDBContext.SaveChanges();
+
+                }
+
+            }
         }
         private void ColumnClear()
         {
+            projectIDTextBox.Text = "";
+
+            projectNameTextBox.Text = "請輸入";
+            projectCategoryIDComboBox.SelectedIndex = 0;
+            projectSupervisorIDComboBox.SelectedIndex = 0;
+            projectStatusIDComboBox.SelectedIndex = 0;
+            requiredDeptIDComboBox.SelectedIndex = 0;
+            requiredDeptPMIDComboBox.SelectedIndex = 0;
+            startDateTextBox.Text = DateTime.Now.ToShortDateString();
+            endDateTextBox.Text = DateTime.Now.ToShortDateString();
+            estStartDateTextBox.Text = DateTime.Now.ToShortDateString();
+            estEndDateTextBox.Text = DateTime.Now.ToShortDateString();
+            inChargeDeptIDComboBox.SelectedIndex = 0;
+            inChargeDeptPMIDComboBox.SelectedIndex = 0;
+            isGeneralManagerConcernedCheckBox.IsChecked = false;
+        }
+        private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (projectIDTextBox.Text != "")
+            {
+                var q = ProjectDBContext.Projects.Find(projectIDTextBox.Text);
+                if (q == null)
+                {
+                    AddProject();
+                }
+                else
+                {
+                    UpdateProject();
+                }
+                ProjectDBContext.SaveChanges();
+                LoadDeptTreeView();
+            }
+
+        }
+        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteProject();
+            LoadDeptTreeView();
+            ColumnClear();
+            treelist1.Model = new ProjectTreeModel(projectIDTextBox.Text, projectNameTextBox.Text);
+        }
+        private void AddProjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadDeptTreeView();
+            ColumnClear();
             var q = ProjectDBContext.Projects.Select(n => n.ProjectID);
             List<int> ID = new List<int>();
             foreach (var x in q)
@@ -185,103 +254,56 @@ namespace AddWork
                 ID.Add(int.Parse(x.Substring(1, 5)));
             }
             projectIDTextBox.Text = "P" + DateTime.Now.Year.ToString().Substring(2, 2) + (ID.Max() + 1).ToString().Substring(2, 3);
-            projectNameTextBox.Text = "";
-            projectCategoryIDComboBox.Text = "";
-            projectSupervisorIDComboBox.Text = "";
-            projectStatusIDComboBox.Text = "";
-            requiredDeptIDComboBox.Text = "";
-            requiredDeptPMIDComboBox.Text = "";
-            startDateTextBox.Text = "";
-            endDateTextBox.Text = "";
-            estStartDateTextBox.Text = "";
-            estEndDateTextBox.Text = "";
-            inChargeDeptIDComboBox.Text = "";
-            inChargeDeptPMIDComboBox.Text = "";
-            isGeneralManagerConcernedCheckBox.IsChecked = false;
-        }
-        private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            var q = ProjectDBContext.Projects.Find(projectIDTextBox.Text);
-            if (q == null)
-            {
-                AddProject();
-            }
-            else
-            {
-                UpdateProject();
-            }
-            ProjectDBContext.SaveChanges();
-            LoadDeptTreeView();
-        }
-        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            DeleteProject();
-            LoadDeptTreeView();
-            ColumnClear();
-        }
-        private void AddProjectButton_Click(object sender, RoutedEventArgs e)
-        {
-            LoadDeptTreeView();
-            ColumnClear();
             treelist1.Model = null;
         }
-        private void TaskMenuItem_Click(object sender, RoutedEventArgs e)
+       
+        private void AddWorksMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (projectIDTextBox.Text == "" || projectIDTextBox.Text == null)
             {
             }
             else
             {
-                SaveMenuItem_Click(sender, e);
-                Works works = new Works { projectIDTextBox = projectIDTextBox, projectNameTextBox = projectNameTextBox };
-                works.LoadProjectTreeView();
-                works.Topmost = true;
-                works.Show();
-            }
-
-        }
-        private void AddWorksMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (treelist1.SelectedNode != null)
-            {
-                int nextWorkID = ProjectDBContext.Works.Select(n => n.WorkID).Max();
-                ProjectModel.Work p = new ProjectModel.Work()
+                if (treelist1.SelectedNode != null)
                 {
-                    WorkName = "NewWork",
-                    WorkID = ++nextWorkID,
-                    ParentWorkID = (treelist1.SelectedNode.Tag as AddWork.Model.ProjectModel).WorkID,
-                    ProjectID = projectIDTextBox.Text,
-                    EmployeeID = 0,
-                    WorkEstStartDate = DateTime.Now,
-                    WorkEstEndDate = DateTime.Now,
-                    WorkStartDate = DateTime.Now,
-                    WorkEndDate = DateTime.Now,
-                    WorkStatusID = 4
-                };
-                ProjectDBContext.Works.Local.Add(p);
-                ProjectDBContext.SaveChanges();
-                treelist1.Model = new ProjectTreeModel(projectIDTextBox.Text, projectNameTextBox.Text);
-            }
-            else
-            {
-                int nextWorkID = ProjectDBContext.Works.Select(n => n.WorkID).Max();
-                ProjectModel.Work p = new ProjectModel.Work()
+                    int nextWorkID = ProjectDBContext.Works.Select(n => n.WorkID).Max();
+                    ProjectModel.Work p = new ProjectModel.Work()
+                    {
+                        WorkName = InputWorkName.Text,
+                        WorkID = ++nextWorkID,
+                        ParentWorkID = (treelist1.SelectedNode.Tag as AddWork.Model.ProjectModel).WorkID,
+                        ProjectID = projectIDTextBox.Text,
+                        EmployeeID = (int)((ComboBoxItem)InputEmployeeID.SelectedItem).Tag,
+                        WorkEstStartDate = DateTime.Parse(InputWorkEstStartDate.Text),
+                        WorkEstEndDate = DateTime.Parse(InputWorkEstEndDate.Text),
+                        WorkStartDate = DateTime.Parse(InputWorkStartDate.Text),
+                        WorkEndDate = DateTime.Parse(InputWorkEndDate.Text),
+                        WorkStatusID = (int)((ComboBoxItem)InputWorkStatusID.SelectedItem).Tag
+                    };
+                    ProjectDBContext.Works.Local.Add(p);
+                    ProjectDBContext.SaveChanges();
+                    treelist1.Model = new ProjectTreeModel(projectIDTextBox.Text, projectNameTextBox.Text);
+                }
+                else
                 {
-                    WorkName = "NewWork",
-                    WorkID = ++nextWorkID,
-                    ProjectID = projectIDTextBox.Text,
-                    EmployeeID = 0,
-                    WorkEstStartDate = DateTime.Now,
-                    WorkEstEndDate = DateTime.Now,
-                    WorkStartDate = DateTime.Now,
-                    WorkEndDate = DateTime.Now,
-                    WorkStatusID = 4
-                };
-                ProjectDBContext.Works.Local.Add(p);
-                ProjectDBContext.SaveChanges();
-                treelist1.Model = new ProjectTreeModel(projectIDTextBox.Text, projectNameTextBox.Text);
-            }
+                    int nextWorkID = ProjectDBContext.Works.Select(n => n.WorkID).Max();
+                    ProjectModel.Work p = new ProjectModel.Work()
+                    {
+                        WorkName = InputWorkName.Text,
+                        WorkID = ++nextWorkID,
+                        ProjectID = projectIDTextBox.Text,
+                        EmployeeID = (int)((ComboBoxItem)InputEmployeeID.SelectedItem).Tag,
+                        WorkEstStartDate = DateTime.Parse(InputWorkEstStartDate.Text),
+                        WorkEstEndDate = DateTime.Parse(InputWorkEstEndDate.Text),
+                        WorkStartDate = DateTime.Parse(InputWorkStartDate.Text),
+                        WorkEndDate = DateTime.Parse(InputWorkEndDate.Text),
+                        WorkStatusID = (int)((ComboBoxItem)InputWorkStatusID.SelectedItem).Tag
+                    };
+                    ProjectDBContext.Works.Local.Add(p);
+                    ProjectDBContext.SaveChanges();
+                    treelist1.Model = new ProjectTreeModel(projectIDTextBox.Text, projectNameTextBox.Text);
+                }
+            }            
         }
         private void RemoveWorkMenuItem_Click(object sender, RoutedEventArgs e)
         {

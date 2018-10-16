@@ -67,28 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\WorksListBox.cs" />
     <Compile Include="Model\ProjectTreeModel.cs" />
-    <Compile Include="Model\WorksTreeModel.cs" />
-    <Compile Include="Works.xaml.cs">
-      <DependentUpon>Works.xaml</DependentUpon>
-    </Compile>
-    <Page Include="TreeListView\TreeStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControl\LabelDatePicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControl\LabelCombox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControl\LabelText.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -97,23 +76,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserControl\LabelDatePicker.xaml.cs">
-      <DependentUpon>LabelDatePicker.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\LabelCombox.xaml.cs">
-      <DependentUpon>LabelCombox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\LabelText.xaml.cs">
-      <DependentUpon>LabelText.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Works.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

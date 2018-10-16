@@ -39,11 +39,6 @@
                     </Border>
                 </Button.Content>
             </Button>
-            <MenuItem  Height="30" Width="25" Margin="5,0,5,0" Click="TaskMenuItem_Click" >
-                <MenuItem.Background>
-                    <ImageBrush ImageSource="Image/AddWorks.png" Stretch="Uniform"/>
-                </MenuItem.Background>
-            </MenuItem >
             <MenuItem Header=""  Height="30" Width="25" Margin="5,0,5,0" Click="SaveMenuItem_Click">
                 <MenuItem.Background>
                     <ImageBrush ImageSource="Image/Save.png" Stretch="Uniform"/>
@@ -52,21 +47,6 @@
             <MenuItem Header=""  Height="30" Width="25" Margin="5,0,5,0" Click="DeleteMenuItem_Click">
                 <MenuItem.Background>
                     <ImageBrush ImageSource="Image/Delete.png" Stretch="Uniform"/>
-                </MenuItem.Background>
-            </MenuItem>
-            <MenuItem Height="30" Width="25" Margin="5,0,5,0">
-                <MenuItem.Background>
-                    <ImageBrush ImageSource="Image/Email.png" Stretch="Uniform"/>
-                </MenuItem.Background>
-            </MenuItem>
-            <MenuItem Height="30" Width="25" Margin="5,0,5,0">
-                <MenuItem.Background>
-                    <ImageBrush ImageSource="Image/Report.png" Stretch="Uniform"/>
-                </MenuItem.Background>
-            </MenuItem>
-            <MenuItem Height="30" Width="25" Margin="5,0,5,0">
-                <MenuItem.Background>
-                    <ImageBrush ImageSource="Image/DownLoad.png" Stretch="Uniform"/>
                 </MenuItem.Background>
             </MenuItem>
         </Menu>
@@ -80,9 +60,9 @@
             </Grid.RowDefinitions>
             <Grid   Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="197*"/>
-                    <RowDefinition Height="24"/>
-                    <RowDefinition Height="167*"/>
+                    <RowDefinition Height="14*"/>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="11*"/>
                 </Grid.RowDefinitions>
 
 
@@ -111,7 +91,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="需求部門:" Grid.Column="0" HorizontalAlignment="Right" Margin="3"  VerticalAlignment="Center"/>
-                        <ComboBox x:Name="requiredDeptIDComboBox" Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="3,4,0,4" Text="{Binding ProjectName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <ComboBox x:Name="requiredDeptIDComboBox" SelectedIndex="1" Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="3,4,0,4" Text="{Binding ProjectName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid >
                         <Grid.ColumnDefinitions>
@@ -120,7 +100,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Content="需求部門PM:" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="requiredDeptPMIDComboBox" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding RequiredDeptPMID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <ComboBox x:Name="requiredDeptPMIDComboBox" SelectedIndex="0" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding RequiredDeptPMID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid >
                         <Grid.ColumnDefinitions>
@@ -129,7 +109,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Content="預計開始時間:" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <DatePicker x:Name="estStartDateTextBox" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding EstStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <DatePicker x:Name="estStartDateTextBox" SelectedDate="2001-01-01" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding EstStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid >
                         <Grid.ColumnDefinitions>
@@ -140,7 +120,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Content="預計結束時間:" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <DatePicker x:Name="estEndDateTextBox" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding EstEndDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <DatePicker x:Name="estEndDateTextBox" SelectedDate="2001-01-01" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding EstEndDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -151,7 +131,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Content="實際開始時間:" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <DatePicker x:Name="startDateTextBox" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <DatePicker x:Name="startDateTextBox" Grid.Column="1" SelectedDate="2001-01-01"  HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -162,7 +142,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Content="實際結束時間:" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <DatePicker x:Name="endDateTextBox" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding EndDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <DatePicker x:Name="endDateTextBox" Grid.Column="1" SelectedDate="2001-01-01" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding EndDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid >
                         <Grid.ColumnDefinitions>
@@ -173,7 +153,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Content="負責單位:" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="inChargeDeptIDComboBox" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding InChargeDeptID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <ComboBox x:Name="inChargeDeptIDComboBox" SelectedIndex="0" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding InChargeDeptID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -184,7 +164,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Content="負責單位PM:" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="inChargeDeptPMIDComboBox" Grid.Column="1" HorizontalAlignment="Right" Height="23" Grid.Row="0" Text="{Binding InChargeDeptPMID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <ComboBox x:Name="inChargeDeptPMIDComboBox" SelectedIndex="0" Grid.Column="1" HorizontalAlignment="Right" Height="23" Grid.Row="0" Text="{Binding InChargeDeptPMID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -195,7 +175,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Content="專案狀態:" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="projectStatusIDComboBox" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding ProjectStatusID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <ComboBox x:Name="projectStatusIDComboBox" SelectedIndex="0" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding ProjectStatusID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid >
                         <Grid.ColumnDefinitions>
@@ -206,7 +186,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Content="專案類別:" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="projectCategoryIDComboBox" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding ProjectCategoryID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <ComboBox x:Name="projectCategoryIDComboBox" SelectedIndex="0" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding ProjectCategoryID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid >
                         <Grid.ColumnDefinitions>
@@ -217,7 +197,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Content="專案督導:" Grid.Column="0" HorizontalAlignment="Right" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <ComboBox  x:Name="projectSupervisorIDComboBox" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding ProjectSupervisorID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                        <ComboBox  x:Name="projectSupervisorIDComboBox" SelectedIndex="0" Grid.Column="1" HorizontalAlignment="Right" Height="23"  Grid.Row="0" Text="{Binding ProjectSupervisorID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     </Grid>
                     <Grid >
                         <Grid.ColumnDefinitions>
@@ -303,7 +283,7 @@
                         </GridView>
                     </Tree:TreeList.View>
                 </Tree:TreeList>
-                <Menu Grid.Row="1" Height="20">
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,2,0,3">
                     <MenuItem Header=""  Height="20" Width="20" Margin="5,0,5,0" Click="AddWorksMenuItem_Click" >
                         <MenuItem.Background>
                             <ImageBrush ImageSource="Image/AddWorks.png" Stretch="Uniform"/>
@@ -314,7 +294,22 @@
                             <ImageBrush ImageSource="Image/RemoveWorks.png" Stretch="Uniform"/>
                         </MenuItem.Background>
                     </MenuItem>
-                </Menu>
+                    <TextBlock Margin="3" Text="工作名稱:" VerticalAlignment="Center"/>
+                    <TextBox Margin="3" Name="InputWorkName" Width="80" Text="請輸入"/>
+                    <TextBlock Margin="3" Text="負責人:" VerticalAlignment="Center"/>
+                    <ComboBox Margin="3" Name="InputEmployeeID" Width="60" SelectedIndex="0"/>
+                    <TextBlock Margin="3" Text="工作狀態:" VerticalAlignment="Center"/>
+                    <ComboBox Margin="3" Name="InputWorkStatusID" Width="60" SelectedIndex="0"/>
+                    <TextBlock Margin="3" Text="預計開始時間:" VerticalAlignment="Center"/>
+                    <DatePicker Margin="3" Name="InputWorkEstStartDate" SelectedDate="2000/01/01"/>
+                    <TextBlock Margin="3" Text="預計結束時間:" VerticalAlignment="Center"/>
+                    <DatePicker Margin="3" Name="InputWorkEstEndDate" SelectedDate="2000/01/01"/>
+                    <TextBlock Margin="3" Text="實際開始時間:" VerticalAlignment="Center"/>
+                    <DatePicker Margin="3" Name="InputWorkStartDate" SelectedDate="2000/01/01"/>
+                    <TextBlock Margin="3" Text="實際結束時間:" VerticalAlignment="Center"/>
+                    <DatePicker Margin="3" Name="InputWorkEndDate" SelectedDate="2000/01/01"/>
+                    
+                </StackPanel>
             </Grid>
             <TreeView x:Name="DeptTreeView"/>
         </Grid>

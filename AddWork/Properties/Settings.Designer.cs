@@ -26,8 +26,7 @@ namespace AddWork.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-616E58R;Initial Catalog=ProjectManagement;Integrated Security" +
-            "=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=ProjectManagement;Integrated Security=True")]
         public string ProjectManagementConnectionString {
             get {
                 return ((string)(this["ProjectManagementConnectionString"]));
